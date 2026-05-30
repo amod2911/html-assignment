@@ -1,0 +1,388 @@
+/* =============================================
+   GreenRoots Urban Farming Initiative
+   style.css — place in a /css/ folder
+   ============================================= */
+
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Design Tokens ── */
+:root {
+  --green-deep:   #1e3a2f;
+  --green-mid:    #2d6a4f;
+  --green-light:  #52b788;
+  --green-pale:   #d8f3dc;
+  --cream:        #f7f3ec;
+  --cream-dark:   #ede8df;
+  --brown:        #6b4f3a;
+  --text-dark:    #1a1a18;
+  --text-mid:     #3d3d38;
+  --text-light:   #7a7a72;
+  --white:        #ffffff;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'DM Sans', sans-serif;
+
+  --radius:       6px;
+  --radius-lg:    14px;
+  --shadow-sm:    0 2px 8px rgba(30,58,47,0.08);
+  --shadow-md:    0 6px 24px rgba(30,58,47,0.14);
+  --transition:   0.25s ease;
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-dark);
+  background-color: var(--cream);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+}
+
+a {
+  color: var(--green-mid);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--green-light);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--green-deep);
+}
+
+h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 0.75rem; }
+h3 { font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--brown); }
+
+p {
+  color: var(--text-mid);
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+/* ── Header ── */
+header {
+  background: var(--green-deep);
+  color: var(--white);
+  padding: 3.5rem 2rem 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle leaf-pattern overlay */
+header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(82,183,136,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(45,106,79,0.25) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  color: var(--green-pale);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  position: relative;
+}
+
+header h1 + p {
+  color: rgba(216,243,220,0.75);
+  font-size: 1.05rem;
+  margin: 0.5rem 0 0;
+  font-style: italic;
+  position: relative;
+}
+
+/* ── Navigation ── */
+nav {
+  background: var(--green-mid);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+
+nav a {
+  color: rgba(216,243,220,0.85);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 1rem 1.5rem;
+  transition: background var(--transition), color var(--transition);
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 80%;
+  height: 2px;
+  background: var(--green-light);
+  transition: transform var(--transition);
+}
+
+nav a:hover {
+  color: var(--white);
+  background: rgba(255,255,255,0.06);
+}
+
+nav a:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* ── Main ── */
+main {
+  flex: 1;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+main section {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 2.25rem 2.5rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--cream-dark);
+  animation: fadeUp 0.5s ease both;
+}
+
+main section:nth-child(2) { animation-delay: 0.1s; }
+main section:nth-child(3) { animation-delay: 0.2s; }
+main section:nth-child(4) { animation-delay: 0.3s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Hero Section ── */
+.hero {
+  background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-mid) 100%) !important;
+  color: var(--white);
+  text-align: center;
+  padding: 3.5rem 2.5rem !important;
+  border: none !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '🌿';
+  position: absolute;
+  font-size: 8rem;
+  opacity: 0.06;
+  top: -1rem;
+  right: -1rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.hero h2 {
+  color: var(--green-pale);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  margin-bottom: 0.75rem;
+}
+
+.hero p {
+  color: rgba(216,243,220,0.82);
+  font-size: 1.1rem;
+  margin-bottom: 1.75rem;
+}
+
+/* ── Button ── */
+.btn {
+  display: inline-block;
+  background: var(--green-light);
+  color: var(--green-deep) !important;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.8rem 2rem;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 4px 16px rgba(82,183,136,0.35);
+}
+
+.btn:hover {
+  background: var(--white);
+  color: var(--green-mid) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(82,183,136,0.4);
+}
+
+/* ── Tables (for sitemap / timeline pages) ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  margin-top: 1rem;
+}
+
+th {
+  background: var(--green-deep);
+  color: var(--green-pale);
+  font-family: var(--font-body);
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+td {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--cream-dark);
+  color: var(--text-mid);
+}
+
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: var(--cream); }
+
+/* ── Forms (enquiry / contact) ── */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--green-deep);
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--cream-dark);
+  border-radius: var(--radius);
+  background: var(--cream);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--green-light);
+  box-shadow: 0 0 0 3px rgba(82,183,136,0.18);
+  background: var(--white);
+}
+
+textarea { min-height: 140px; resize: vertical; }
+
+input[type="submit"],
+button[type="submit"] {
+  background: var(--green-mid);
+  color: var(--white);
+  border: none;
+  border-radius: 999px;
+  padding: 0.85rem 2rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: background var(--transition), transform var(--transition);
+  width: fit-content;
+  align-self: flex-start;
+}
+
+input[type="submit"]:hover,
+button[type="submit"]:hover {
+  background: var(--green-deep);
+  transform: translateY(-1px);
+}
+
+/* ── Lists ── */
+ul, ol {
+  padding-left: 1.5rem;
+  color: var(--text-mid);
+  font-weight: 300;
+}
+
+li { margin-bottom: 0.4rem; }
+
+/* ── Footer ── */
+footer {
+  background: var(--green-deep);
+  color: rgba(216,243,220,0.7);
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  font-size: 0.875rem;
+  line-height: 2;
+}
+
+footer p { color: rgba(216,243,220,0.7); margin: 0; }
+
+footer a {
+  color: var(--green-light);
+  font-weight: 500;
+}
+
+footer a:hover { color: var(--white); }
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  header { padding: 2.5rem 1.25rem 2rem; }
+  main { padding: 1.5rem 1rem 3rem; gap: 2rem; }
+  main section { padding: 1.5rem; }
+  .hero { padding: 2.5rem 1.5rem !important; }
+  nav a { padding: 0.8rem 1rem; font-size: 0.8rem; }
+}
